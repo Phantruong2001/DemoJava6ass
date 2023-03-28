@@ -50,12 +50,12 @@
                 </div>
 <hr>
                 <div class="row ml-2 ">
-                    SẢN PHẨM LIÊN QUAN
+                    SẢN PHẨM TƯƠNG TỰ
 
                 </div>
 
                 <div class="row">
-                    <ul>
+                    <ul class="ml-5">
                         <li th:each="product : ${product.category.products}">
                             <a th:href="@{|/product/detail/${product.id}|}">[[${product.name}]]  </a>
                           

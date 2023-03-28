@@ -5,15 +5,9 @@
 <body>
 	<main>
 		<div class="container">
-
-		
 			<section class="mt-5 mb-4">
-
-			
-				<!-- Danh sách sản phẩm có trong giỏ hàng -->
+			<!-- Danh sách sản phẩm có trong giỏ hàng -->
 				<div class="row">
-
-				
 					<div class="col">
 						<div class="card" th:fragment="">
 							<div class="card-header bg-success text-white">SHOPPING
@@ -85,7 +79,7 @@
 												<p class="mb-0">(including VAT)</p>
 											</strong>
 										</div> <span><strong>${{cart.amount | number : 2}}</strong></span>
-										</span>
+										
 									</li>
 								</ul>
 								<div class="card mb-4">
@@ -112,17 +106,11 @@
 								<a th:href="@{/order/checkout}"
 									class="btn btn-primary btn-block waves-effect waves-light">Go
 									to checkout</a>
-
 							</div>
 						</div>
-						
-
 
 					</div>
 				</div>
-
-
-
 			</section>
 
 
