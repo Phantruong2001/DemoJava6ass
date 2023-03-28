@@ -1,0 +1,1 @@
+"# AssJava6Test" 
