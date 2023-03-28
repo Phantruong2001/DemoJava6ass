@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<body>
+    <main th:object="${product}">
+        <div class="container">
+            <div class="col-lg-8 mt-4 mb-3 border p-3 main-section bg-white offset-2">
+                <div class="row hedding m-0 pl-3 pt-0 pb-3">
+                    CHI TIẾT SẢN PHẨM
+                </div>
+                <div class="row m-0">
+                    <div class="col-lg-4 left-side-product-box pb-3">
+                        <img th:src="@{|/assets/images/*{image}|}" class="card-img-top img-fluid">
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="right-side-pro-detail border p-3 m-0">
+                            <div class="row">
+                                <div class="col-lg-12">
+                              
+                                    <strong><p th:text="${product.name}" class="m-0 p-0"></p></strong>
+                                </div>
+                                <div class="col-lg-12">
+                                    <strong th:text="${product.price + ' $' }" class="m-0 p-0 price-pro" style="color: red"></strong>
+                                    <hr class="p-0 m-0">
+                                </div>
+                               
+                                <div class="col-lg-12">
+                                    <strong>Ngày nhập :</strong> <span th:text="*{createDate}"></span>
+                                </div>
+                                <div class="col-lg-12">
+                                    <strong>Loại sản phẩm : </strong><span th:text="*{category.name}"></span>
+                                </div>
+                                <div class="col-lg-12">
+                                    
+                                  	
+                                </div>
+                                <div class="col-lg-12 mt-3">
+                                    <div class="row">
+                                        <div class="col-lg-6 pb-2">
+                                            <a th:attr="ng-click=@{|cart.add(*{id})|}" class="btn btn-danger w-100 text-white">Add To Cart</a>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <a th:href="@{/product/list}" class="btn btn-success w-100">Shop </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<hr>
+                <div class="row ml-2 ">
+                    SẢN PHẨM LIÊN QUAN
+
+                </div>
+
+                <div class="row">
+                    <ul>
+                        <li th:each="product : ${product.category.products}">
+                            <a th:href="@{|/product/detail/${product.id}|}">[[${product.name}]]  </a>
+                          
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<body>
+
+	<main>
+		<div class="row mt-4"></div>
+		<div class="row g-3">
+			<div class="container mt-2 mb-5">
+				<div class="products">
+					<div class="row">
+						<div class="col-md-3 col-sm-6 mt-3"
+							th:each="product : ${products}">
+							<div class="card">
+								<a th:href="@{|/product/detail/${product.id}|}"><img
+									th:src="@{|/assets/images/${product.image}|}"
+									class="card-img-top img-fluid" style="height: 220px;"></a>
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<span th:text="${product.name}" class="font-weight-bold"></span>
+										<strong>$<span th:text="${product.price}"
+											class="font-weight-bold"></span></strong>
+									</div>
+
+								</div>
+								<hr>
+								<div class="card-body">
+									<div class="text-right buttons">
+										<button class="btn btn-danger">Like</button>
+										<button th:attr="ng-click=@{|cart.add(${product.id})|}"
+											class="btn btn-success">Add to cart</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+
+</html>
