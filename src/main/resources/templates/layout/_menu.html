@@ -1,7 +1,8 @@
 <nav
-	class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient p-md-3 container-fluid" >
+	class="navbar navbar-expand-lg navbar-dark bg-dark p-md-3 container-fluid" >
 	<div class="container">
-		<a class="navbar-brand" th:href="@{/product/list}">Apple Store</a>
+		<a class="navbar-brand " th:href="@{/product/list}" >Apple Store</a>
+		
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -9,16 +10,17 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<div class="mx-auto">
-				<form class="form-inline">
+				<form class="form-inline" th:action="@{/product/search}">
 					
 					<div class="form-group has-search">
-						<span class="fa fa-search form-control-feedback"></span> <input
+						<span class="fa fa-search form-control-feedback"></span> <input id="name" name="name"
 							type="text" class="form-control" placeholder="Search Products">
+							<button class="btn btn-dark ml-2">Search</button>
 					</div>
 				</form>
 			</div>
 
-			<div class="mx-auto">
+			<div class="mx-auto p">
 				<ul class="navbar-nav">
 					<th:block th:if="${#request.remoteUser}">
 						<li><a class="nav-link text-light" th:href="@{/order/list}">
@@ -41,26 +43,26 @@
 				<th:block th:unless="${#request.remoteUser}">
 					<li class="nav-item"><a class="nav-link text-light"
 						th:href="@{/security/login/form}"> <span class="text">Log
-								in</span></a></li>
+								in |</span></a></li>
 								
 				</th:block>
 
  
 				<li th:if="${#request.remoteUser}" class="nav-item"><a
-					class="nav-link text-light" href=""> <span class="text">Welcome </span>
-						[[${#request.remoteUser}]] !
+					class="nav-link text-light" href=""> <span class="text"><i class="fa fa-user"></i> </span>
+						[[${#request.remoteUser}]] |
 				</a></li>
 
 
 
 				<li class="nav-item float-right"><a class="nav-link text-light"
 					th:href="@{/cart/view}"><span class="fa fa-shopping-cart"></span>
-						<span class="text">{{cart.count}}</span></a></li>
+						<span class="text">{{cart.count}} |</span></a></li>
 
 
 				<li class="nav-item"><a class="nav-link text-light"
-					th:href="@{/security/logoff}"> <span class="text">Log
-							out</span></a></li>
+					th:href="@{/security/logoff}"> <span class="text"><i class="fa fa-lock"></i>
+							</span></a></li>
 			</ul>
 		</div>
 	</div>

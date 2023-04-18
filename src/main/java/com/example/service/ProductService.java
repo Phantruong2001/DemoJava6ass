@@ -14,6 +14,14 @@ import com.example.entity.Product;
 
 public interface ProductService {
 
+	List<Product> findByNameContaining(String name);
+
+	void delete(Integer id);
+
+	Product update(Product product);
+
+	Product create(Product product);
+
 	<S extends Product> List<S> findAll(Example<S> example, Sort sort);
 
 	<S extends Product> List<S> findAll(Example<S> example);
@@ -77,12 +85,6 @@ public interface ProductService {
 	<S extends Product> S save(S entity);
 
 	List<Product> findByCategoryId(Optional<String> id);
-
-	Product create(Product product);
-
-	Product update(Product product);
-
-	void delete(Integer id);
 
 	
 	

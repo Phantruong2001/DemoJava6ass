@@ -198,6 +198,17 @@ public class ProductServiceImpl implements ProductService{
 		 productRepository.deleteById(id);;
 	}
 
+	@Override
+	public List<Product> findByNameContaining(String name) {
+		// TODO Auto-generated method stub
+		return productRepository.findByNameContaining(name);
+	}
+
+
+	
+
+	
+
 	
 	
 

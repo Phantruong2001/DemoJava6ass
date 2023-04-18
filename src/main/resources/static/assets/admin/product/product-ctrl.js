@@ -52,7 +52,7 @@ app.controller("product-ctrl", function($scope, $http) {
 	$scope.reset = function() {
 		$scope.form = {
 			createDate: new Date(),
-			image: 'cloud-upload.jpg',
+			image: 'upload.jpg',
 			available: true
 		}
 

@@ -18,9 +18,10 @@ import com.example.service.RoleService;
 
 @Service
 public class RoleServiceImpl implements RoleService{
+	
 	@Autowired
 	RoleRepository roleRepository;
-
+	
 	@Override
 	public <S extends Role> S save(S entity) {
 		return roleRepository.save(entity);
@@ -175,6 +176,7 @@ public class RoleServiceImpl implements RoleService{
 	public <S extends Role> List<S> findAll(Example<S> example, Sort sort) {
 		return roleRepository.findAll(example, sort);
 	}
+
 	
 	
 }

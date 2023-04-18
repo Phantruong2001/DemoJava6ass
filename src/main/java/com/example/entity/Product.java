@@ -31,8 +31,10 @@ public class Product  implements Serializable{
 	@Column(name = "name", length = 100, columnDefinition = "nvarchar(100) not null")
 	private String name;
 	private String image;
-	
+	private int quantity;
 	private Double price;
+	@Column(name = "description", columnDefinition = "nvarchar(255)")
+	private String description;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Createdate")
 	private Date createDate = new Date();

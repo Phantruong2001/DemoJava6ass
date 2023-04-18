@@ -1,7 +1,7 @@
 <div class="card mt-4 mb-4">
     <div class="card-body">
         <span class="fa fa-shopping-cart"></span>
-        <a th:href="@{/cart/view}" class="card-text">{{cart.count}} items x ${{cart.amount | number : 2}}</a>
+        <a th:href="@{/cart/view}" class="card-text">{{cart.count}} items - ${{cart.amount | number : 2}}</a>
        	 
     </div>
 </div>

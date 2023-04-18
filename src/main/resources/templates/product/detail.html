@@ -2,70 +2,121 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
 
 <body>
-    <main th:object="${product}">
-        <div class="container">
-            <div class="col-lg-8 mt-4 mb-3 border p-3 main-section bg-white offset-2">
-                <div class="row hedding m-0 pl-3 pt-0 pb-3">
-                    CHI TIẾT SẢN PHẨM
-                </div>
-                <div class="row m-0">
-                    <div class="col-lg-4 left-side-product-box pb-3">
-                        <img th:src="@{|/assets/images/*{image}|}" class="card-img-top img-fluid">
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="right-side-pro-detail border p-3 m-0">
-                            <div class="row">
-                                <div class="col-lg-12">
-                              
-                                    <strong><p th:text="${product.name}" class="m-0 p-0"></p></strong>
-                                </div>
-                                <div class="col-lg-12">
-                                    <strong th:text="${product.price + ' $' }" class="m-0 p-0 price-pro" style="color: red"></strong>
-                                    <hr class="p-0 m-0">
-                                </div>
-                               
-                                <div class="col-lg-12">
-                                    <strong>Ngày nhập :</strong> <span th:text="*{createDate}"></span>
-                                </div>
-                                <div class="col-lg-12">
-                                    <strong>Loại sản phẩm : </strong><span th:text="*{category.name}"></span>
-                                </div>
-                                <div class="col-lg-12">
-                                    
-                                  	
-                                </div>
-                                <div class="col-lg-12 mt-3">
-                                    <div class="row">
-                                        <div class="col-lg-6 pb-2">
-                                            <a th:attr="ng-click=@{|cart.add(*{id})|}" class="btn btn-danger w-100 text-white">Add To Cart</a>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <a th:href="@{/product/list}" class="btn btn-success w-100">Shop </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-<hr>
-                <div class="row ml-2 ">
-                    SẢN PHẨM TƯƠNG TỰ
-
-                </div>
-
-                <div class="row">
-                    <ul class="ml-5">
-                        <li th:each="product : ${product.category.products}">
-                            <a th:href="@{|/product/detail/${product.id}|}">[[${product.name}]]  </a>
-                          
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </main>
+    
+		<main class="container" th:object="${product}">
+	       
+	        <div class="row mt-4">
+	        	<div class="col-md-6">
+	        		<div id="slider" class="product-slider">
+						<div class="item">
+						  	<img th:src="@{|/assets/images/*{image}|}" width="500px" height="500px" style="border-radius:10px" />
+						</div>
+						
+					</div>
+					
+	        	</div>
+	        	<div class="col-md-6">
+	        		<div class="product-dtl">
+        				<div class="product-info">
+		        			<div class="product-name">[[${product.name}]]</div>
+		        			<div class="reviews-counter">
+								<div class="rate">
+								    <input type="radio" id="star5" name="rate" value="5" checked />
+								    <label for="star5" title="text">5 stars</label>
+								    <input type="radio" id="star4" name="rate" value="4" checked />
+								    <label for="star4" title="text">4 stars</label>
+								    <input type="radio" id="star3" name="rate" value="3" checked />
+								    <label for="star3" title="text">3 stars</label>
+								    <input type="radio" id="star2" name="rate" value="2" />
+								    <label for="star2" title="text">2 stars</label>
+								    <input type="radio" id="star1" name="rate" value="1" />
+								    <label for="star1" title="text">1 star</label>
+								  </div>
+								<span>3 Reviews</span>
+							</div>
+		        			<div class="product-price-discount"><span th:text="${product.price + ' $' }"></span></div>
+		        		</div>
+	        			<p>[[*{description}]]</p>
+	        		
+	        		<div class="" >Created date: [[*{createDate}]]</div>
+	        		
+	        		<div class="">Category: [[*{category.name}]]</div>
+	        		
+	        			<div class="">Status: [[*{available ? 'available' : 'unavailable'}]]</div>
+	        			<div class="product-count">
+	        				<label for="size">Quantity</label>
+	        				<form action="#" class="display-flex">
+							    <div class="qtyminus">-</div>
+							    <input type="text" name="quantity" value="1" class="qty">
+							    <div class="qtyplus">+</div>
+							</form>
+							<a href="#" th:attr="ng-click=@{|cart.add(*{id})|}" class="round-black-btn">Add to Cart</a>
+							<a  th:href="@{/product/list}"  class="round-black-btn">
+							Shop <i class="fa fa-arrow-right"></i></a>
+	        			</div>
+	        		</div>
+	        	</div>
+	        </div>
+	        <div class="product-info-tabs">
+		        <ul class="nav nav-tabs" id="myTab" role="tablist">
+				  	<li class="nav-item">
+				    	<a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
+				  	</li>
+				  	<li class="nav-item">
+				    	<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews (0)</a>
+				  	</li>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+				  	<div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+				  		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.
+				  	</div>
+				  	<div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+				  		<div class="review-heading">REVIEWS</div>
+				  		<p class="mb-20">There are no reviews yet.</p>
+				  		<form class="review-form">
+		        			<div class="form-group">
+			        			<label>Your rating</label>
+			        			<div class="reviews-counter">
+									<div class="rate">
+									    <input type="radio" id="star5" name="rate" value="5" />
+									    <label for="star5" title="text">5 stars</label>
+									    <input type="radio" id="star4" name="rate" value="4" />
+									    <label for="star4" title="text">4 stars</label>
+									    <input type="radio" id="star3" name="rate" value="3" />
+									    <label for="star3" title="text">3 stars</label>
+									    <input type="radio" id="star2" name="rate" value="2" />
+									    <label for="star2" title="text">2 stars</label>
+									    <input type="radio" id="star1" name="rate" value="1" />
+									    <label for="star1" title="text">1 star</label>
+									</div>
+								</div>
+							</div>
+		        			<div class="form-group">
+			        			<label>Your message</label>
+			        			<textarea class="form-control" rows="10"></textarea>
+			        		</div>
+			        		<div class="row">
+				        		<div class="col-md-6">
+				        			<div class="form-group">
+					        			<input type="text" name="" class="form-control" placeholder="Name*">
+					        		</div>
+					        	</div>
+				        		<div class="col-md-6">
+				        			<div class="form-group">
+					        			<input type="text" name="" class="form-control" placeholder="Email Id*">
+					        		</div>
+					        	</div>
+					        </div>
+					        <button class="round-black-btn">Submit Review</button>
+			        	</form>
+				  	</div>
+				</div>
+			</div>
+			
+			
+		</main>
+	
+   
 </body>
 
 </html>
